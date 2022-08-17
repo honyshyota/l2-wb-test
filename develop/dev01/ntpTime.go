@@ -25,7 +25,9 @@ func NtpTime() (time.Time, error) {
 		_, writeErr := io.WriteString(os.Stderr, err.Error()) // если возникает ошибка пишем ее в stderr
 		if writeErr != nil {
 			logrus.Println("Ошибка записи в stderr", writeErr)
+			os.Exit(1)
 		}
+		os.Exit(1)
 		return time, err // возвращаем ошибку
 	}
 
