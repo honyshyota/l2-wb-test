@@ -55,6 +55,9 @@ func Extract(s string) (string, error) {
 				} else if shield { // с экранированием
 					if !prevSymIsDig { // предыдущий символ не число
 						prevSymIsDig = true // просто переключаем флаг
+						if i == len(rString)-1 {
+							result = append(result, val) // если в последней итерации цифра то просто записываем ее
+						}
 					} else if prevSymIsDig { // если число
 						shield = false                    // выключаем флаг
 						value := rString[i-1]             // берем предыдущий символ
@@ -66,7 +69,7 @@ func Extract(s string) (string, error) {
 			}
 		} else if unicode.IsLetter(val) { // если символ буква
 			if i != 0 { // Если перую букву не пропустим будет паника ибо берем предыдущий символ в массиве
-				if i != len(rString)-1 { // Если индекс итерации не равен длине нашего массива
+				if i != len(rString)-1 { // Если индекс итерации не равен 						fmt.Println(5)длине нашего массива
 					if !prevSymIsDig { // и предыдущий символ не число
 						result = append(result, rString[i-1]) // просто аппендим предыдущий символ к результату
 					} else if prevSymIsDig { // если предыдущий символ число просто переключаем флаг
@@ -83,8 +86,9 @@ func Extract(s string) (string, error) {
 		} else if val == 92 { // если символ знак экранирования
 			if prevSymIsDig { // предыдущий символ число
 				prevSymIsDig = false // переключаем флаг числа
-				if shield { // если экран уже включен
-					shield = false // просто выключаем его
+				if shield {          // если экран уже включен
+					//shield = false // просто выключаем его
+					result = append(result, rString[i-1])
 				} else if !shield { // если выключен
 					shield = true // просто включаем
 				}
@@ -93,7 +97,7 @@ func Extract(s string) (string, error) {
 					shield = false // выключаем
 				} else if !shield { // экран выключен
 					result = append(result, rString[i-1]) // аппендим впредыдущий символ в результат
-					shield = true // включаем экран
+					shield = true                         // включаем экран
 				}
 			}
 		}
@@ -103,7 +107,7 @@ func Extract(s string) (string, error) {
 }
 
 // функция преобразователь
-func sliceLetters(a rune, b rune) []rune { 
+func sliceLetters(a rune, b rune) []rune {
 	num := int(b - '0') // получаем инт из руны
 
 	var result []rune
