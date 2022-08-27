@@ -1,0 +1,22 @@
+The Honda K-series engine is a line of four-cylinder four-stroke car engine introduced in 2001.
+The K-series engines are equipped with DOHC valvetrains and use roller rockers on the cylinder head to reduce friction.
+The engines use a coil-on-plug, distributorless ignition system with a coil for each spark plug.
+This system forgoes the use of a conventional distributor-based ignition timing system 
+in favor of a computer-controlled system that allows the ECU to control ignition timings based on various sensor inputs.
+The cylinders have cast iron sleeves similar to the B- and F-series engines,
+as opposed to the FRM cylinders found in the H- and newer F-series engines found only in the Honda S2000.
+Similar to B series, the K-series car engines have two short blocks with the same design;
+the only difference between them being the deck height.
+K20 uses the short block with a deck height of 212 mm (8.3 in) where K23 and K24 block has a deck height of 231.5 mm (9.1 in).[1]
+Two versions of the Honda i-VTEC system can be found on a K-series engine,
+and both versions can come with variable timing control (VTC) on the intake cam.
+The VTEC system on engines like the K20A3 only operate on the intake cam;
+at low rpm only one intake valve is fully opened,
+the other opening just slightly to create a swirl effect in the combustion chamber for improved fuel atomization.
+At high engine speeds, both intake valves open fully to improve engine breathing.
+In engines such as the K20A2 found in the Acura RSX Type-S, the VTEC system operates on both the intake and exhaust valves,
+allowing both to benefit from multiple cam profiles.
+A modified K20C engine is used in motorsport,
+as the Sports Car Club of America Formula 3 and 4 series that run in North America both use a K20C engine,
+with the Formula 4 engine not having a turbocharger. These are gaining a following in the import scene,
+but also among hot rodders and kit car enthusiasts, because they can be put in longitudinal rear wheel drive layouts.
