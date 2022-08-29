@@ -10,6 +10,7 @@ require (
 )
 
 require (
+	github.com/mitchellh/go-ps v1.0.0
 	github.com/sirupsen/logrus v1.8.1
 	github.com/stretchr/testify v1.2.2
 	golang.org/x/net v0.0.0-20220812174116-3211cb980234 // indirect
