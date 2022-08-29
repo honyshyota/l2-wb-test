@@ -4,14 +4,14 @@ import "fmt"
 
 // Паттер "Посетитель"
 
-// Интерфейс посетителя
+// Visitor Интерфейс посетителя
 type Visitor interface {
 	VisitRepairModule(*repairModule) string
 	VisitWorkModule(*workModule) string
 	VisitSoftwareModule(*softwareModule) string
 }
 
-// Интерфейс элементов для обхода
+// Module Интерфейс элементов для обхода
 type Module interface {
 	Accept(v Visitor) string
 }

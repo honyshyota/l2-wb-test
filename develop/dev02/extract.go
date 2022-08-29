@@ -24,7 +24,7 @@ qwe\\5 => qwe\\\\\ (*)
 
 var errIncorrectString = errors.New("некорректная строка")
 
-// Функция распаковки
+// Extract функция распаковки
 func Extract(s string) (string, error) {
 	if len(s) == 0 { // Если длина строки равно 0 то возвращаем пустую строку без ошибки
 		return "", nil

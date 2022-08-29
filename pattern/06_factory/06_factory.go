@@ -4,12 +4,12 @@ import "fmt"
 
 // Паттерн "Фабрика"
 
-// Интерфейс задачи
+// Task Интерфейс задачи
 type Task interface {
 	taskDescription(int)
 }
 
-// Интерфейс описывающий поведение фабричного типа
+// IRobot Интерфейс описывающий поведение фабричного типа
 type IRobot interface {
 	getName() string
 	getPower() int

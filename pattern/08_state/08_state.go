@@ -16,7 +16,7 @@ func main() {
 	fmt.Println(robot.status()) // Выводим в stdout результат
 }
 
-// Интерфейс для различных состояний
+// RobotState Интерфейс для различных состояний
 type RobotState interface {
 	status() string
 }

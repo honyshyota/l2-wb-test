@@ -1,4 +1,4 @@
-package anagramSearch_test
+package anagramsearch_test
 
 import (
 	"testing"

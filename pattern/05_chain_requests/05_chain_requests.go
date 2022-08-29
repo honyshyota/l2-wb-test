@@ -4,7 +4,7 @@ import "fmt"
 
 // Паттерн "Цепочка вызовов"
 
-// Интерфейс обработчиков в цепочке
+// Handler Интерфейс обработчиков в цепочке
 type Handler interface {
 	sendRequest(int) string
 }

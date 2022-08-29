@@ -63,15 +63,14 @@ func main() {
 	if fName == "" {
 		logrus.Println("Не указано имя файла")
 		return
-	} else {
-		f, err := ioutil.ReadFile(fName)
-		if err != nil {
-			logrus.Println("Ошибка открытия файла")
-			return
-		}
-
-		buf = f
 	}
+	rFile, err := ioutil.ReadFile(fName)
+	if err != nil {
+		logrus.Println("Ошибка открытия файла")
+		return
+	}
+
+	buf = rFile
 
 	sSlice := mainSort(buf, &f)
 

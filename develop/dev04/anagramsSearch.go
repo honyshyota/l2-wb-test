@@ -1,10 +1,11 @@
-package anagramSearch
+package anagramsearch
 
 import (
 	"sort"
 	"strings"
 )
 
+// FindAnagrams функция поиска анаграм
 func FindAnagrams(input *[]string) *map[string][]string {
 	result := make(map[string][]string) // результат
 	// мапа где ключем является сортированые по возрастанию буквы, а значеним слово

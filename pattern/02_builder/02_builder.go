@@ -6,7 +6,7 @@ import (
 
 // Паттерн "Строитель"
 
-// Интерфейс строителя
+// RobotBuilder Интерфейс строителя
 type RobotBuilder interface {
 	setWeight(int) RobotBuilder
 	setTask(string) RobotBuilder
@@ -14,7 +14,7 @@ type RobotBuilder interface {
 	build() Robot
 }
 
-// Интерфейс продукта
+// Robot Интерфейс продукта
 type Robot interface {
 	walk()
 	stop()
@@ -88,7 +88,7 @@ func (rb *robotBuilder) build() Robot {
 	}
 }
 
-// И решил создать еще одного строителя
+// RobotDestroyer И решил создать еще одного строителя
 type RobotDestroyer interface {
 	setDestroy(bool) RobotDestroyer
 	build(Robot) Robot
@@ -119,13 +119,12 @@ func (rd *robotDestroyer) build(r Robot) Robot {
 			power:   "",
 			destroy: rd.destroy,
 		}
-	} else {
-		return &robot{
-			weight:  robo.weight,
-			task:    robo.task,
-			power:   robo.power,
-			destroy: rd.destroy,
-		}
+	}
+	return &robot{
+		weight:  robo.weight,
+		task:    robo.task,
+		power:   robo.power,
+		destroy: rd.destroy,
 	}
 }
 

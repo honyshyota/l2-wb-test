@@ -1,4 +1,4 @@
-package ntpTime
+package ntptime
 
 import (
 	"io"
@@ -18,7 +18,7 @@ import (
 Программа должна корректно обрабатывать ошибки библиотеки: выводить их в STDERR и возвращать ненулевой код выхода в OS
 */
 
-// Требуемая функция инкапсулированы и имеет доступ из вне
+// NtpTime функция инкапсулированы и имеет доступ из вне
 func NtpTime() (time.Time, error) {
 	time, err := ntp.Time("0.beevik-ntp.pool.ntp.org")
 	if err != nil {
