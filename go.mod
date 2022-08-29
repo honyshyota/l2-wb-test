@@ -5,11 +5,13 @@ go 1.18
 require github.com/beevik/ntp v0.3.0
 
 require (
+	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 )
 
 require (
+	github.com/PuerkitoBio/goquery v1.8.0
 	github.com/mitchellh/go-ps v1.0.0
 	github.com/sirupsen/logrus v1.8.1
 	github.com/stretchr/testify v1.2.2
