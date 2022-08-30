@@ -31,16 +31,18 @@ go-telnet --timeout=10s host port go-telnet mysite.ru 8080 go-telnet --timeout=3
 func main() {
 	var f string
 
-	flag.StringVar(&f, "t", "10s", "set timeout")
+	flag.StringVar(&f, "t", "10s", "set timeout") // парсим флаги таймаута
 	flag.Parse()
 
+	// создаем канал для получения сигнала ОС, ввиду того что в моем случае стоит последняя версия Ubuntu
+	// в ней не работает сигнал SIGQUIT, поэтому собрал с сигналом SIGINT
 	exitChOs := make(chan os.Signal, 1)
 	signal.Notify(exitChOs, syscall.SIGINT)
 
 	go func(exitCh chan os.Signal) {
 		for {
 			switch <-exitCh {
-			case syscall.SIGINT:
+			case syscall.SIGINT: // слушаем канал, и если в него приходит сигнал завершаем работу
 				logrus.Println("System shutdown...")
 				os.Exit(0)
 			default:
@@ -54,12 +56,12 @@ func main() {
 		return
 	}
 
-	host := flag.Arg(0)
+	host := flag.Arg(0) // парсим аргументы хоста и порта
 	port := flag.Arg(1)
 
 	connString := host + ":" + port
 
-	conn, err := net.DialTimeout("tcp", connString, timeout)
+	conn, err := net.DialTimeout("tcp", connString, timeout) // подключаемся к сокету
 	if err != nil {
 		logrus.Fatalln("Не удалось соединиться: ", err)
 		return
@@ -68,8 +70,8 @@ func main() {
 
 	go func() {
 		for {
-			time.Sleep(3 * time.Second)
-			_, err := net.Dial("tcp", connString)
+			time.Sleep(3 * time.Second)           // придумал эти костыли чтоб пинговать сокет
+			_, err := net.Dial("tcp", connString) // и в случае его не ответа завершать работу
 			if err != nil {
 				logrus.Println("Соединение с сокетом разорвано")
 				os.Exit(0)
@@ -77,10 +79,10 @@ func main() {
 		}
 	}()
 
-	stdinReader := bufio.NewReader(os.Stdin)
+	stdinReader := bufio.NewReader(os.Stdin) // создаем ридеры для стандартного ввода и ридер соединения
 	connReader := bufio.NewReader(conn)
 
-	for {
+	for { // в цикле читаем из стандартного ввода
 		logrus.Println("Введите сообщение: ")
 
 		message, err := stdinReader.ReadString('\n')
@@ -89,16 +91,18 @@ func main() {
 			continue
 		}
 
-		fmt.Fprint(conn, message)
+		fmt.Fprint(conn, message) // передаем в наш сокет
 
-		responseMessage, err := connReader.ReadString('\n')
+		responseMessage, err := connReader.ReadString('\n') // получаем ответ
 		if err != nil {
 			logrus.Error("Ошибка получения сообщения")
 			continue
 		}
 
+		// тут тоже у меня проблема ибо при переносе строки добавляется не только символ переноса,
+		// но и символ возврата каретки
 		responseMessage = strings.TrimSpace(responseMessage)
 
-		logrus.Println("Сообщение от сервера: ", responseMessage)
+		logrus.Println("Сообщение от сервера: ", responseMessage) // ну и печатаем сообщение
 	}
 }
