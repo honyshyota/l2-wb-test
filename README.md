@@ -4,7 +4,7 @@
 </p>
 
 
-# WB L1 test
+# WB L2 test
 
 ## Task Description
 
