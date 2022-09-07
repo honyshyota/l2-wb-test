@@ -19,8 +19,6 @@ type Robot interface {
 	walk()
 	stop()
 	work()
-	isDestroy()
-	get() *robot
 }
 
 // Структура продукта
@@ -41,14 +39,6 @@ func (r *robot) stop() {
 
 func (r *robot) work() {
 	fmt.Println("Robot complete task: ", r.task)
-}
-
-func (r *robot) isDestroy() {
-	fmt.Println("Robot is destroy? ", r.destroy)
-}
-
-func (r *robot) get() *robot {
-	return r
 }
 
 // Структура строителя
@@ -88,46 +78,6 @@ func (rb *robotBuilder) build() Robot {
 	}
 }
 
-// RobotDestroyer И решил создать еще одного строителя
-type RobotDestroyer interface {
-	setDestroy(bool) RobotDestroyer
-	build(Robot) Robot
-}
-
-type robotDestroyer struct {
-	destroy bool
-}
-
-func newDestroyer() RobotDestroyer {
-	return &robotDestroyer{}
-}
-
-func (rd *robotDestroyer) setDestroy(status bool) RobotDestroyer {
-	rd.destroy = status
-	return rd
-}
-
-// Метод build возращает интерфейс и записывает отличающиеся данные в переменную
-// в зависимости от состояния поля destroy
-func (rd *robotDestroyer) build(r Robot) Robot {
-	robo := r.get()
-
-	if rd.destroy {
-		return &robot{
-			weight:  0,
-			task:    "",
-			power:   "",
-			destroy: rd.destroy,
-		}
-	}
-	return &robot{
-		weight:  robo.weight,
-		task:    robo.task,
-		power:   robo.power,
-		destroy: rd.destroy,
-	}
-}
-
 func main() {
 	robotBuilder := newBuilder() // Создаем строителя
 
@@ -136,14 +86,4 @@ func main() {
 	robot.walk() // Проверяем что получили
 	robot.work()
 	robot.stop()
-
-	robotDestroyer := newDestroyer()
-
-	destRobot := robotDestroyer.setDestroy(false).build(robot)
-
-	destRobot.isDestroy()
-
-	destRobot = robotDestroyer.setDestroy(true).build(robot)
-
-	destRobot.isDestroy()
 }
