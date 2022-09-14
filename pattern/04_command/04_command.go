@@ -40,7 +40,7 @@ func (i *invoker) com(command Command) {
 }
 
 // Метод выполнения команды
-func (i *invoker) execute() bool {
+func (i *invoker) goComm() bool {
 	return i.command.execute()
 }
 
@@ -66,10 +66,10 @@ func main() {
 	invoker := &invoker{} // Инициализируем инициатора
 
 	invoker.com(&onCommand{prodaction: robot}) // Устанавливаем команду инициатору
-	invoker.execute()                          // Запрос на выполнение команды
+	invoker.goComm()                           // Запрос на выполнение команды
 	fmt.Println(robot)                         // Вывод результата в stdout
 
 	invoker.com(&offCommand{prodaction: robot}) // Устанавливаем команду инициатору
-	invoker.execute()                           // Запрос на выполнение команды
+	invoker.goComm()                            // Запрос на выполнение команды
 	fmt.Println(robot)                          // Вывод результата в stdout
 }

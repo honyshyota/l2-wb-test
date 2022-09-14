@@ -94,5 +94,4 @@ func main() {
 	prodaction.Add(&softwareModule{})
 
 	fmt.Println(prodaction.Accept(&robot{})) // Обходим их нашим посетителем и для примера результат выводим в stdout
-
 }

@@ -151,7 +151,7 @@ func numberSort(input []byte, flag *flags) []string {
 		if err != nil {
 			logrus.Fatal(err)
 		}
-
+		
 		if flag.k <= len(s) {
 			column, err = strconv.ParseFloat(s[flag.k-1], 32)
 			if err != nil {
