@@ -11,21 +11,21 @@ const (
 	Wagon req = "wagon"
 )
 
-type Selector interface {
-	NewFactory(req) Factory
+type Factory interface {
+	NewFactory(req) Product
 }
 
-type Factory interface {
+type Product interface {
 	Print()
 }
 
 type Creator struct{}
 
-func NewCreator() Selector {
+func NewCreator() Factory {
 	return &Creator{}
 }
 
-func (c *Creator) NewFactory(typeName req) Factory {
+func (c *Creator) NewFactory(typeName req) Product {
 	switch typeName {
 	default:
 		fmt.Println("Не существует такого кейса")
@@ -39,7 +39,7 @@ func (c *Creator) NewFactory(typeName req) Factory {
 
 type CarSedan struct{}
 
-func NewSedan() Factory {
+func NewSedan() Product {
 	return &CarSedan{}
 }
 
@@ -49,7 +49,7 @@ func (c *CarSedan) Print() {
 
 type CarWagon struct{}
 
-func NewWagon() Factory {
+func NewWagon() Product {
 	return &CarWagon{}
 }
 
